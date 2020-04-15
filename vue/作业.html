@@ -5,10 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-
+<!--点击列表中的那一项, 就把该项目文字变成红色-->
 <div id="app">
     <ul>
-        <li v-for="item in movies">{{item}}</li>
+        <li :id="index" :class="{active:active}" v-for="(item,index )in movies" v-on:click="change(index)">{{item}}</li>
     </ul>
 </div>
 
@@ -19,6 +19,12 @@
         el: '#app',
         data: {
             movies: ['我是传奇','放牛班的春天','盗梦空间']
+            active:false
+        },
+        methods:{
+            change:function (index) {
+
+            }
         }
     })
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--点击列表中的那一项, 就把该项目文字变成红色-->
+<div id="app">
+    <!--三种方式来进行显示 ,
+     1是在显示处进行拼接, 不要在html中处理内容,
+     第二是使用方法来进行显示,
+     第三是使用计算属性的方式-->
+
+</div>
+
+<script src="../../js/vue.js"></script>
+
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            firstname: 'koby=e',
+            lastname: 'bryant'
+        },
+        methods: {
+            change: function (index) {
+
+            }
+        },
+        computed: {
+            // 完整的计算属性的写法, 属性对应的是一个对象.有set方法和get方法, 一般来讲的话,
+            // 是一个只读属性, 所以一般省略掉get方法,所以一般都省略将其作
+            fullname: {
+                set: function (newValue) {
+                    console.log("----" + newValue);
+                    let split = newValue.split(' ');
+                    this.firstname = split[0];
+                    this.lastname = split[1];
+                },
+                get: function () {
+                }
+            },
+            // 省略掉的只有get方法的写法, 所以其使用的本质是一个属性, 以及其get方法, 所以不需要像方法那样去调用
+            fullname2: function () {
+                return this.firstname + " " + this.lastname;
+            }
+        }
+    })
+
+
+</script>
+
+</body>
+</html>

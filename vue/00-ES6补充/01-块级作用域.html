@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    {
+        var name = 'ceshi';
+        console.log(name)
+    }
+    // 对于var的话{}是不起作用的, 没有块级的作用域
+    console.log(name);
+
+
+    //2.在if的块级和for的块级都会容易引起错误, 在真正进行调用之前, 重新定义变量的话,
+    // 变量在外部就被进行修改了,
+    // var的问题可以使用闭包来进行解决, 因为在函数是作用域, 其里面的值不受外界的影响
+    //es6的话let是有块级的作用域的
+    if (true){
+        var name1='test'
+
+
+    }
+
+
+</script>
+</body>
+</html>
