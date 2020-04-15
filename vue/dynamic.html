@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+
+
+    <!--    v-bind 为动态绑定, 其后面的内容为解析为data中的属性
+    可以进行绑定src以及链接的内容-->
+    <!--    普通绑定 , 有普通的class也没关系的, vue内部会进行合并-->
+    <h2 class="title" :class="active"> {{message}}</h2>
+    <!--    进行绑定对象    {} 为对象, 可以使用 {类名1: boolean , 类名2: boolean}  可以通过控制其boolean的类型控制最终的绑定的class-->
+    <h2 :class="{active: isActive , line : isLine}">{{message}}</h2>
+<!--    使用methods的形式-->
+    <h2 :class="getClass()">{{message}}</h2>
+<!--    使用数组的形式  单引号的话则未字符串, 普通的话则当做变量来进行解析. -->
+    <h2 :class="['active',line]">{{message}}</h2>
+    <button v-on:click="btnClick">change color</button>
+
+
+
+<!--    <img v-bind:src="imgUrl">-->
+<!--    <a v-bind:href="ahref">百度一下</a>-->
+<!--    &lt;!&ndash;    语法糖版本&ndash;&gt;-->
+<!--    <img :src="imgUrl">-->
+
+
+    <!--    1- 动态绑定class的属性-->
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message: "this is a message",
+            imgUrl: 'https://graphql.org.cn/asset/img/logo.svg',
+            ahref: 'http://www.baidu.com',
+            active: 'active',
+            isActive: true,
+            line:'line',
+            isLine:false
+        },
+        methods: {
+            // vue的生命周期的回调方法
+            btnClick: function () {
+                console.log("change");
+                this.isActive= ! this.isActive;
+            },
+            getClass: function () {
+                return {active: this.isActive , line : this.isLine};
+
+            }
+
+        }
+    })
+
+
+</script>
+</body>
+</html>
