@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h2>当前计数: {{counter}}</h2>
+    <button v-on:click="increment">+</button>
+    <button @click="sub">-</button>
+    <!--    <button v-on:click="counter++">+</button>-->
+    <!--    <button @click="counter&#45;&#45;">-</button>-->
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            counter: 0
+        },
+        methods: {
+            increment: function () {
+                console.log("add被执行")
+                // 直接使用counter的话是在找这个app下的全局的counter,
+                // 这里可以使用appp.counter, 单一般是使用this 的关键字的
+                this.counter++;
+            },
+            sub: function () {
+                console.log("sub被执行")
+                this.counter--;
+            }
+
+        }
+
+    })
+
+    // 之前的处理是拿到button元素, 然后去添加监听事件
+</script>
+
+</body>
+</html>
