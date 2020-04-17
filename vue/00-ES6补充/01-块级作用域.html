@@ -6,6 +6,37 @@
 </head>
 <body>
 <script>
+    // 一旦定义不能进行修改, 2 必须进行初始化 3 java对象属性, 对象指针不可改变, 但对象属性可以进行改变
+    const name = 'test';
+    const age = 18;
+    const height = 180;
+    //ES5写法
+    const obj = {
+        name: name,
+        age: age,
+        height: height
+    };
+    //对象增强写法
+    const obj = {
+        name,
+        age,
+        height,
+
+      testFunction :function () {
+        console.log("this is a test with function");
+      },
+      testNew  () {
+        console.log("this is a test with function");
+      },
+
+    };
+
+
+    obj.name = 'coke'
+    let tes;
+    // 对象的增强写法, 字面量 const obj={ } 这个就是字面量
+    // log打印的话, 在输出内容后.log即可.
+
 
     {
         var name = 'ceshi';
@@ -19,11 +50,18 @@
     // 变量在外部就被进行修改了,
     // var的问题可以使用闭包来进行解决, 因为在函数是作用域, 其里面的值不受外界的影响
     //es6的话let是有块级的作用域的
-    if (true){
-        var name1='test'
-
-
+    if (true) {
+        var name1 = 'test'
+        const name = 'test';
     }
+
+
+    //对象增强写法
+    const obj = {
+      name,
+      age,
+      height
+    };
 
 
 </script>

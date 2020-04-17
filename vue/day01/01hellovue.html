@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  {{message}}
+  <br/>
+  <button @click="getHello"> say hello</button>
+  <h2>
+    {{hellomessage}}
+  </h2>
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  // let（变量）/const（常量） 在之前一般使用var来进行接收，es6中用来替换的
+  // 使用vue来管理id为app的div
+  const app = new Vue({
+    // 挂载绑定
+    el: '#app',
+    //数据
+    data: {
+      message: 'hello, vue'
+    },
+    //方法
+    methods: {
+      getHello() {
+        console.log(this.message);
+      }
+    },
+    // 计算属性
+    computed: {
+      hellomessage() {
+        return this.message+" " + "!!"
+      }
+    }
+
+
+  })
+  // 元素js的配置
+  // 创建div元素, 设置id属性, 定义变量名, 然后对其进行赋值
+  // 编程泛式:命令式的编程.  vue的编程方式:  声明式编程.需要做的就是声明, 至于内部处理不需要管.
+  // 其实是从面向过程的, 到面向对象的过程.
+  // 声明的语法就是{{}} 叫做插值
+  // 好处就是,处理界面的和处理数据的内容完全的分离.
+  // vue是数据驱动视图的, 当数据变动的时候, 页面内容也自动会变化的
+
+</script>
+
+</body>
+</html>

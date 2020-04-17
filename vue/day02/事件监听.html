@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2> {{message}}</h2>
+  <button v-on:click="onclick"></button>
+  <!--  v-on 语法糖效果, 其方法可以省略掉小括号-->
+  <button @click="onclick"></button>
+  <!--  正常的传参-->
+  <button @click="onclick2(123)"></button>
+  <!--使用默认的传参-->
+  <button @click="onclick2"></button>
+
+  <!--  在调用方法时手动的传递event对象 , 不加双引号其就当为白能量来处理, 是需要去加单引号的-->
+  <button @click="onclick3('abc',$event)"></button>
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: 'message'
+    },
+    methods: {
+      onclick() {
+
+      },
+      //如果不进行传参的话,默认将浏览器生成的event对象作为参数进行传递
+      onclick2(abc) {
+
+      }
+    }
+  })
+</script>
+< /body>
+< /html>

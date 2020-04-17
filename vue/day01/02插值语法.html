@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    [v-cload] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<!--    v-cloak 渲染标识, 当标签在执行渲染完以后, 自动清除这个v-cloak, 则没渲染, 有, 渲染了无, 可以在上面样式上, 让未渲染的内容不进行显示 -->
+<div id="app" v-cloak>
+  <h2>{{message}},李银河</h2>
+  <!--    只进行单次显示, 后续不可进行更改.-->
+  <h2 v-once>{{firstname+ " " + lastname}}</h2>
+  <!--    用于显式html-->
+  <h2 v-html="url"></h2>
+  <!--    v-text 只是进行显示普通的文本, 但其会进行覆盖, 而不是普通的进行拼接-->
+  <h2 v-text="message">,李银河</h2>
+  <!--    v-pre  转义, 不进行任何的解析-->
+  <h2 v-pre> {{message}}</h2>
+
+  <h2 v-cload>{{message}}}</h2>
+
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: "你好啊",
+      firstname: "li",
+      lastname: "shuntao",
+      url: "<a href='http://www.baidu.com'>百度一下</a>"
+    },
+    methods: {
+      // vue的生命周期的回调方法
+      add: function () {
+
+      }
+
+    }
+  })
+
+
+</script>
+</body>
+</html>

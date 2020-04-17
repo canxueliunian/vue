@@ -1,50 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
 <!--点击列表中的那一项, 就把该项目文字变成红色-->
 <div id="app">
-    <ul>
-        <li :id="index" :class="{active:active}" v-for="(item,index )in movies" v-on:click="change(index)">{{item}}</li>
-    </ul>
+  <ul>
+    <li :id="index" :class="{active:active}" v-for="(item,index )in movies" v-on:click="change(index)">{{item}}</li>
+  </ul>
 </div>
 
 <script src="../../js/vue.js"></script>
 
 <script>
-    const app = new Vue({
-        el: '#app',
-        data: {
-            firstname: 'koby=e',
-            lastname: 'bryant'
-        },
-        methods: {
-            change: function (index) {
+  const app = new Vue({
+    el: '#app',
+    data: {
+      firstname: 'kobye',
+      lastname: 'bryant'
+    },
 
-            }
+    computed: {
+
+      fullname0:{
+        set:function(){
+
         },
-        computed: {
-            // 完整的计算属性的写法, 属性对应的是一个对象.有set方法和get方法, 一般来讲的话,
-            // 是一个只读属性, 所以一般省略掉get方法,所以一般都省略将其作
-            fullname: {
-                set: function (newValue) {
-                    console.log("----"+ newValue);
-                    let split = newValue.split(' ');
-                    this.firstname=split[0];
-                    this.lastname=split[1];
-                },
-                get: function () {
-                }
-            },
-            // 省略掉的只有get方法的写法, 所以其使用的本质是一个属性, 以及其get方法, 所以不需要像方法那样去调用
-            fullname2: function () {
-                return this.firstname + " " + this.lastname;
-            }
+        get: function(){
+          return this.firstname + " " + lastname
         }
-    })
+      },
+
+      // 省略掉的只有get方法的写法, 所以其使用的本质是一个属性, 以及其get方法, 所以不需要像方法那样去调用
+      fullname1: function () {
+        return this.firstname + " " + lastname
+      }
+
+
+
+    }
+  })
 
 
 </script>

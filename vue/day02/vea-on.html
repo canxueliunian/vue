@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app" @click="divclick">
+  <!--stop修饰符防止冒泡, 点击btn就只调用button防止div的方法调用-->
+  <button @click.stop="btnclick">test</button>
+</div>
+<!----prevent 组织默认的操作-->
+<div>
+  <form>
+    <!--    默认是点击后提交, 通过prevent可以防止其自动提交-->
+    <!--    once修饰符, 只能去点击一次-->
+    <input type="submit" @click.prevent="submitClick">
+  </form>
+  <!--  事件监听, keyup-->
+  <div>
+    <div @keyup="keyUp">
+      <input type="text">
+    </div>
+
+    <br/>
+    <!--   只监听键盘上的enter 的按键 -->
+    <input type="text" @keyup.enter="keyup2">
+  </div>
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: 'message',
+
+    },
+    methods: {
+      btnclick() {
+        console.log("btnclick");
+      },
+      divclick() {
+        console.log("divclick");
+      },
+      keyUp() {
+        console.log("keyup");
+      },
+      keyup2() {
+        console.log("keyup");
+      },
+      submitClick() {
+        console.log("提交");
+      }
+    }
+  })
+</script>
+</body>
+</html>

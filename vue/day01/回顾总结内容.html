@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--对于计算的属性的话可以使用computed来进行组装, 其本质上是类似于get方法的-->
+    <h2> 总价为: {{totalPrice}}</h2>
+
+
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message: 'active',
+            firstname: 'li',
+            lastname: 'shuntao',
+            books: [
+                {id: 110, name: '小王子', price: 10},
+                {id: 111, name: '白昼烟花', price: 12},
+                {id: 112, name: '其他', price: 13},
+                {id: 113, name: '小王子', price: 14}
+            ]
+        },
+        //computed本质上是类似于方法的, 但是其只会执行一次, 方法的话是没有缓存的, 是每次都进行执行的.
+        // 并且其进行定义的话, 都是使用名词, 而不是使用动词, 直接作为属性
+        computed: {
+            fullname: function () {
+                return this.firstname + ' ' + this.lastname;
+            },
+            totalPrice: function () {
+                let result = 0;
+                for (let i in this.books) {
+                    result += this.books[i].price;
+                }
+                return result;
+
+            }
+        }
+
+
+    })
+
+
+</script>
+</body>
+</html>
