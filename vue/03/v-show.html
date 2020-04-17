@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <div>
+    <ul>
+      <!--    普通遍历-->
+      <li v-for="item in names">{{item}}</li>
+    </ul>
+    <!--    带有索引的遍历-->
+
+
+    <br>
+    <ul>
+      <!--    带有下标的, 第一个为值,第二个为下标, 名称是自定的-->
+      <li v-for="(item, index) in names">{{index + '.'+item}}</li>
+    </ul>
+    <br>
+    <ul>
+      <!--      遍历对象, 默认的是给的value-->
+      <li v-for="item in info">{{item}}</li>
+
+
+    </ul>
+    <ul>
+    <!--      它的参数顺序为value, key, index-->
+      <li v-for="(value,key) in info"> {{key}} and {{value}}</li>
+    </ul>
+  </div>
+</div>
+
+
+</div>
+
+<script src="../../js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      firstname: 'koby=e',
+      lastname: 'bryant',
+      names: ['why', 'ze', 'fe', 'ds'],
+      info: {
+        name: 'test',
+        age: 18
+      }
+    },
+    methods: {
+      change: function (index) {
+
+      }
+    },
+    computed: {}
+  })
+
+
+</script>
+
+</body>
+</html>

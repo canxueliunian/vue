@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>书籍购物车</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+<!--   通过if-else结构来显示表格还是信息-->
+  <div v-if="books.length ==0">
+    <h2>购物车中没有商品</h2>
+  </div>
+  <div v-else>
+    <table>
+      <thead>
+      <tr>
+        <th></th>
+        <th>书籍名称</th>
+        <th>出版日期</th>
+        <th>价格</th>
+        <th>购买数量</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(item,index) in books">
+        <th>{{item.id}}</th>
+        <th>{{item.name}}</th>
+        <th>{{item.date}}</th>
+        <!--过滤器的使用-->
+        <th>{{item.price | getFullPrice}}</th>
+        <th>
+          <!--        通过绑定disable 当数量小于等于1的时候不允许再去点击-->
+          <button @click="decrement(index)" :disabled="item.count <= 1">-</button>
+          {{item.count}}
+          <button @click="increment(index)">+</button>
+        </th>
+        <th>
+          <button @click="removeBtn(index)">移除</button>
+        </th>
+
+      </tr>
+
+
+      </tbody>
+
+    </table>
+<!--    通过过滤器来显示价格样式-->
+    <h2>总价格:{{totalPrice |showPrice }}</h2>
+  </div>
+</div>
+
+<script src="../../../js/vue.js"></script>
+<script src="main.js"></script>
+
+
+</body>
+</html>

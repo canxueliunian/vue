@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <div>
+    <ul>
+<!--      在循环的时候记录下index下标值, class属性使用判断当前选中元素与 index 是否相等
+ 当发生选中事件的时候, 更新选中的currentindex的内容-->
+      <li v-for="(item,index) in movies"
+          :class="{active: currentIndex === index}" @click="change(index)">
+        {{item}}
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<script src="../../js/vue.js"></script>
+
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      movies: ['海上钢琴师', '爱在黄昏前', '爱在黄昏后'],
+      //记录当前的选中因素
+      currentIndex: 0
+    },
+    methods: {
+      change: function (index) {
+        this.currentIndex = index;
+      }
+    },
+
+  })
+
+
+</script>
+
+</body>
+</html>
