@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<div >
+    <h2 v-if="active">this is a test</h2>
+    <h2 v-else> this is false</h2>
+</div>
+
+</div>
+<script src="../../js/vue.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        data: {
+            counter: 0,
+            active:true
+        },
+        methods: {}
+
+    })
+
+    // 之前的处理是拿到button元素, 然后去添加监听事件
+</script>
+</body>
+</html>
