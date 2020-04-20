@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+  <!-- v-model 用于双向绑定 input== vm ,和{{}} 类似, 但前者是响应式, 但是当改变input的内容时, data也会进行改变-->
+  <div>
+    <h2>v-model: {{model}}</h2>
+    <lable for="model">
+      <input type="text" v-model="model">
+    </lable>
+  </div>
+  <!--  使用v-bind绑定属性, 使用input监听input框输入-->
+  <div>
+    <h2>普通形式: {{model2}}</h2>
+    <lable for="model2">
+      <input type="text" :value="model2" @input="valChange">
+    </lable>
+  </div>
+
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      model: 'message',
+      model2: 'message2'
+
+    },
+    methods: {
+      valChange(event) {
+        this.model2 = event.target.value;
+      }
+    }
+  })
+</script>
+</body>
+</html>
