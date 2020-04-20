@@ -29,35 +29,44 @@ const app = new Vue({
   computed: {
     totalPrice() {
       let totalPrice = 0;
-      for (let i = 0; i < this.books.length; i++) {
+      //普通形式的for循环
+      // for (let i = 0; i < this.books.length; i++) {
+      //   totalPrice += this.books[i].count * this.books[i].price;
+      // }
+
+      // for 方法第二种
+      for (let i in this.books) {
         totalPrice += this.books[i].count * this.books[i].price;
       }
-      // return totalPrice;
+
+      // 直接进行拿元素的形式来进行循环. letof
+      for (let book of this.books) {
+        totalPrice += book.count * books.price;
+      }
+
+      //reduce:
+
+      return totalPrice;
+
+      //  高阶函数 filter map, redulce
 
 
-      return this.books.reduce((book,n)=>book.count*book.price);
     },
-
-
-
-
-    //  reduce的使用, 对数组里的所有内容进行汇总
-
-    total() {
-      let newNum = [100, 200, 344, 5666];
-      // 参数1是一个方法preValue是拿到上一次的返回值,value
-      // 是这次的循环值, 所以可以用这个来进行累加操作, 其中第二个的值是第一次的prevalue的默认值.
-      newNum.reduce(function (preValue, value) {
-        return preValue + value;
-      }, 0);
-
-      //filter , map , reduce的高阶函数.
-      // 是使用lanmda的剪头函数来进行替代function
-      newNum.filter(n => n < 100).map(n => n * 2).reduce((pre, n) => pre + n);
+    // filter 函数, 返回布尔值
+    com() {
+      const nums = [11, 22, 44];
+      let numsFilter = nums.filter(function (n) {
+        if (n < 100) {
+          return true;
+        } else {
+          return false;
+        }
+      }).map(function (n) {
+        return n * 2;
+      })
 
 
     }
-
   },
   //过滤器,
   filters: {

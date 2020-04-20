@@ -29,7 +29,7 @@
         <th>{{item.name}}</th>
         <th>{{item.date}}</th>
         <!--过滤器的使用-->
-        <th>{{item.price | getFullPrice}}</th>
+        <th>{{item.price | showPrice}}</th>
         <th>
           <!--        通过绑定disable 当数量小于等于1的时候不允许再去点击-->
           <button @click="decrement(index)" :disabled="item.count <= 1">-</button>
