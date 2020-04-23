@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+  <!--  当创建多个组件实例的时候, 其data 是不能共享的, 所以data 的部分需要去使用函数.
+        组件是需要各自独立的, 有其单独的数据空格, 各自不受影响
+  -->
+  <computer></computer>
+  <computer></computer>
+  <computer></computer>
+</div>
+
+<script src="../../js/vue.js"></script>
+<template id="computer">
+  <h2>当前计数:{{computernum}}
+    <button @click="increment">+</button>
+    <button @click="decrement">_</button>
+  </h2>
+
+</template>
+
+
+<script>
+  //注册组件:
+
+  Vue.component('computer', {
+    template: '#computer',
+    data() {
+      return {
+        computernum: 0,
+      }
+
+    },
+    methods: {
+      increment() {
+        this.computernum++;
+      },
+      decrement() {
+        this.computernum--;
+      }
+
+    }
+
+  })
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: 'message',
+
+    }
+  })
+</script>
+
+</body>
+</html>

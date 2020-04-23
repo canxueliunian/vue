@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+<cpn2></cpn2>
+</div>
+
+<!--1:  text/x-template    使用这种方法来进行写模板 -->
+<!--引用的id 要写在script上才可以-->
+<script type="text/x-template" id="cpn">
+<div >
+  <h2>
+    这是一个组件分离的测试
+  </h2>
+</div>
+</script>
+
+
+<!--template标签-->
+<template id="cpn2">
+  <div >
+    <h2>
+      这是一个组件分离的测试cpn2
+    </h2>
+  </div>
+</template>
+
+
+<script src="../../js/vue.js"></script>
+<script>
+  Vue.component('cpn2',{
+    template: '#cpn2'
+  })
+  // Vue.component('cpn2',{
+  //   template: '#cpn2'
+  // })
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: 'message',
+
+    }
+  })
+</script>
+
+</body>
+</html>

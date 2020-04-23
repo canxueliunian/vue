@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<cpn>
+
+</cpn>
+
+<div id="app">
+<!--  3: 使用组件-->
+<!--  使用的话必须放在vue的实例中才能使用, 否则不能进行使用-->
+  <my-con></my-con>
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  //Es6中可以是用 ``做双引号,并且是可以换行的
+  // 创建组件构造器对象
+  let cpnC = Vue.extend(
+    {
+      template: `
+        <div>
+        <h2> 标题信息</h2>
+        <p> 内容信息</p>
+        <p> 内容信息2</p>
+        </div>
+      `
+    }
+  );
+  // 2:注册组件
+  Vue.component('my-con', cpnC);
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: 'message',
+
+    }
+  })
+</script>
+
+</body>
+</html>

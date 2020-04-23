@@ -6,19 +6,13 @@
 </head>
 <body>
 <div id="app">
-  <h2> {{message}}</h2>
-  <!-- label 的好处, 在选中的时候, 及时选择文字也是可以选中的额, 而不是必须要点击checkbox
 
-   同时下一步的操作, 可以去绑定这个checkbox的值, 当选择以后可以去点击下一步的按钮
-   单选 , 同意协议, 下一步
-   多选的话, 选择爱好.多选multiple , v-model绑定到select标签上
-
-   值绑定的话, 多选框的内容不是绑定死的, 而是通过动态的绑定的形式, for循环来进行实现
-   -->
-  <label for=""></label>
-  <div>
-    <input type="radio" id="man" v-model="message">
-  </div>
+  <h2>您选择的水果是:  {{firuts}}</h2>
+  <select name="f" id="fri" v-model="firuts" multiple>
+    <option value="香蕉"> 香蕉</option>
+    <option value="橘子"> 橘子</option>
+    <option value="苹果"> 苹果</option>
+  </select>
 
 
 </div>
@@ -29,6 +23,7 @@
     el: "#app",
     data: {
       message: 'message',
+      firuts:[]
 
     },
     methods: {
