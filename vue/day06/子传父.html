@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+<!--  监听子组件的事件-->
+  <cpn :cinfo="info" @changeinfo="fchangeinfo"></cpn>
+</div>
+
+<script src="../../js/vue.js"></script>
+
+
+<template id="cpn1">
+  <div>
+    <p> {{cinfo}} </p>
+    <button @click="changeinfo">change</button>
+  </div>
+</template>
+
+<!--
+* 子组件向父组件推送自定义事件
+* 子组件使用$emit(事件名, 属性)来推送事件
+* 父组件使用v-on来监听事件名, 然后绑定方法来做对应的操作, 组件上不需要去绑定参数, 其会自动进行接收的
+-->
+
+<script>
+  const cpn = {
+    template: '#cpn1',
+
+    props: {
+      cinfo: {
+        type: Object,
+        default() {
+          return {};
+        }
+      }
+    },
+    methods:{
+      changeinfo(){
+        console.log('子组件调用方法');
+        // 事件名,value内容
+        this.$emit('changeinfo','changeinfo by child')
+      }
+    }
+
+  }
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      info: {
+        name: 'li',
+        age: 18
+      }
+    },
+    components: {
+      cpn
+    },
+    methods: {
+      fchangeinfo(value){
+        console.log(value);
+        console.log('父组件打印信息');
+      }
+    }
+
+  })
+</script>
+
+</body>
+</html>

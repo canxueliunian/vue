@@ -7,19 +7,30 @@
 <body>
 <div id="app">
   <h2> {{message}}</h2>
+  <cpn></cpn>
 </div>
-<!--组件内部是不能够访问vue的data的,
-其实是一个单独的功能模块, 有template也是有data的
-组件中的data必须为function而不能是对象类型,而且是必须返回对象类型.
-组件是类似于一个vue实例的, 它也是有methods的
--->
+
+<template id="cpn">
+  <div>
+    <h2>{{hello}}</h2>
+  </div>
+</template>
 <script src="../../js/vue.js"></script>
 <script>
   const app = new Vue({
     el: "#app",
     data: {
       message: 'message',
-
+    },
+    components:{
+      'cpn':{
+        template:'#cpn',
+        data(){
+          return {
+            hello:'hello  vue'
+          }
+        }
+      }
     }
   })
 </script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn :cinfo="info"></cpn>
+</div>
+
+<script src="../../js/vue.js"></script>
+
+
+<template id="cpn1">
+  <div>
+    <p> {{cinfo}} </p>
+  </div>
+</template>
+
+
+<script>
+  const cpn = {
+    template: '#cpn1',
+    // v-bind是不支持驼峰的, 当命名时使用驼峰的时候, 在使用的时候转义驼峰   CInfo  --> c-info
+    // vue的子组件有很多的根的话需要放在div中
+    props: {
+      cinfo: {
+        type: Object,
+        default() {
+          return {};
+        }
+      }
+    }
+
+  }
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      info: {
+        name: 'li',
+        age: 18
+      }
+    },
+    components: {
+      cpn
+    }
+
+  })
+</script>
+
+</body>
+</html>

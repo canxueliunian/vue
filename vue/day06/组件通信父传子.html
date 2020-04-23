@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+
+  <cpn :cmovies="movies" :cmessage="message"></cpn>
+</div>
+
+<script src="../../js/vue.js"></script>
+
+
+<template id="cpn1">
+  <div>
+    <p> {{cmovies}} </p>
+    <h2>{{cmessage}}</h2>
+  </div>
+</template>
+
+
+<script>
+  <!--  父传子使用props来进行传递-->
+  //定义自己的属性, 然后在使用的时候, 使用v-bind绑定父组件属性到子组件的属性上去.
+  // 组件名称不能进行大写.
+  function Person(firstName, lastName) {
+   this.firstName=firstName;
+   this.lastName= lastName;
+  }
+
+  const cpn = {
+    template: '#cpn1',
+    // props中可以设置为对象也可以设置为数组
+    // props: ['cmoives', 'cmessage']
+    //  在设置为对象的时候可以去设置属性的类型
+    props: {
+      cmovies: Array,
+      cmessage: String,
+      // 可能是多种类型
+      cmo: [Array, String],
+      // 设置为对象类型, 里面的话可以设置该属性的详细内容, 入type, default
+      cname: {
+        type: String,
+        default: 'testname',
+        // 使用组件的时候, 必须要传递该属性.
+        required: true
+      },
+      cmovie: {
+        //数组或者对象类型, 要设置默认值的话, 其不同通过属性设置, 要通过方法来进行返回
+        type: Array,
+        // 校验函数
+        validator(value) {
+          return ['success', 'warning', 'danger'].indexOf(value) !== -1;
+        },
+
+        default() {
+          return []
+        }
+      },
+      // 校验自定义类型
+      person: Person
+
+    }
+
+  }
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: 'test',
+      movies: ['稻草', '铁皮人']
+
+    },
+    components: {
+      cpn
+    }
+  })
+</script>
+</body>
+</html>
