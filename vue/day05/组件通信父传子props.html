@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2> {{message}}</h2>
+  <h2>这是通过props绑定输出</h2>
+  <!--  将子属性和父属性绑定在一起-->
+  <cpnfather :zmessage="message"></cpnfather>
+</div>
+
+
+<script src="../../js/vue.js"></script>
+<script>
+
+  // 通信 , 子组件中定义props, 在使用的时候使用v-bind来去向子属性去绑定父属性
+  function Person(firstName, lastName) {
+    this.firstName=firstName;
+    this.lastName= lastName;
+  }
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: 'message',
+
+    },
+    components: {
+      'cpnfather': {
+        template: `
+          <div>
+            <h2>这是一个父组件</h2>
+            <cpnson>{{zmessage}}</cpnson>
+          </div>
+        `,
+        // 方式一: 设置为数组格式
+        // props:['zmessage','message'],
+        // 方式二: 设置为对象形式,对象格式的话可以设置单个属性的类型和校验等
+        props: {
+          props1: Number,
+          // 两种类型皆可以
+          props2: [Number, String],
+          // 使用对象的形式来对props做限制
+          props3: {
+            type: String,
+            // 必须输入
+            required: true,
+            // 默认值
+            default: 'success',
+            //校验方法
+            validator(value) {
+              return ['success', 'warning', 'danger'].indexOf(value) !== -1;
+            }
+
+          },
+          // 带有默认值的返回对象
+          props4: {
+            type: Object,
+            default() {
+              return {
+                'message': 'test'
+              }
+            }
+          },
+          props5:Person
+
+        }
+
+
+      }
+    }
+  })
+</script>
+
+</body>
+</html>

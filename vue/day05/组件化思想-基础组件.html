@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<cpn>
+
+</cpn>
+
+<div id="app">
+
+  <!--  3: 使用组件-->
+  <!--  使用的话必须放在vue的实例中才能使用, 否则不能进行使用-->
+  <!--  <cpn></cpn>-->
+  <!--  <br>-->
+  <my-con></my-con>
+</div>
+
+<script src="../../js/vue.js"></script>
+<script>
+  // 组件分为四部分:
+  //1.组件的定义 2.定义中包含的模板 , 3 : 组件的注册, 组件的使用
+
+  // // 1: 创建组件构造器对象
+  // let cpnC = Vue.extend(
+  //   {
+  //     //Es6中可以是用 ``做双引号,好处是可以支持随意换行
+  //     //2: 组件中的模板
+  //     template: `
+  //       <div>
+  //       <h2> 这是一个组件内容</h2>
+  //       </div>
+  //     `
+  //   }
+  // );
+  // // 3:注册组件,这个是将注册为全局组件,组件标签与组件对象
+  // Vue.component('my-con', cpnC);
+
+
+  //定义组件
+  let cpn = Vue.extend(
+    {
+      template: `
+        <div>
+            <h2>这是一个组件</h2>
+        </div>
+      `
+    }
+  )
+  // Vue.component('my-cpn', cpn);
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: 'message',
+
+    },
+    components: {
+      'my-con': cpn
+    }
+  })
+</script>
+
+</body>
+</html>

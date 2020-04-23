@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h2> {{message}}</h2>
+  <cpnfather></cpnfather>
+</div>
+
+
+<script src="../../js/vue.js"></script>
+<script>
+
+  // 父组件
+  //定义组件
+
+  let cpnSon = Vue.extend(
+    {
+      template: `
+        <div>
+            <h2>这是一个子组件</h2>
+          <cpnson></cpnson>
+        </div>
+      `
+    }
+  )
+
+
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: 'message',
+
+    },
+    components: {
+      // 使用语法糖结构
+      'cpnfather': {
+        template: `
+          <div>
+            <h2>这是一个父组件</h2>
+            <cpnson></cpnson>
+          </div>
+        `
+        , components: {
+          'cpnson': cpnSon
+        }
+
+      }
+    }
+  })
+</script>
+
+</body>
+</html>
