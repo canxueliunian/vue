@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+  <h2>这是app的数据</h2>
+  <h2>num1: {{appnum1}}</h2>
+  <h2>num2: {{appnum2}}</h2>
+
+  <!-- 父组件data与子组件的props进行绑定, 并监听子组件数据变化-->
+  <cpn :cpnnum1="appnum1"
+       :cpnnum2="appnum2"
+       @num1change="num1change"
+       @num2change="num2change"
+  ></cpn>
+</div>
+
+<script src="../../js/vue.js"></script>
+
+
+<template id="cpn1">
+  <div>
+    <h2>这是组件部分的内容</h2>
+    <h2>组件 props:num1:{{dnum1}}</h2>
+    <h2>组件 data:num1:{{cpnnum1}}</h2>
+    <!--    input框手动实现类似于v-model 的效果-->
+    <input type="text" :value="dnum1" @input="num1Input">
+    <h2>组件 props:num2:{{dnum2}}</h2>
+    <h2>组件 data:num2:{{cpnnum2}}</h2>
+    <input type="text" :value="dnum2" @input="num2Input">
+
+  </div>
+</template>
+
+<!--
+-->
+
+<script>
+  const cpn = {
+    template: '#cpn1',
+
+    props: {
+      cpnnum1: {
+        type: Number,
+        default: 0
+      },
+      cpnnum2: Number
+    },
+
+    data() {
+      return {
+        dnum1: this.cpnnum1,
+        dnum2: this.cpnnum2
+      }
+    },
+    methods: {
+      //change方法中去推送事件
+      num1Input(event) {
+        this.dnum1 = event.target.value;
+        this.cpnnum1 = this.dnum1;
+        this.$emit('num1change', this.dnum1);
+      },
+      num2Input(event) {
+        this.dnum2 = event.target.value;
+        this.cpnnum2 = this.dnum2;
+        this.$emit('num2change', this.dnum2);
+      }
+    }
+
+  }
+  //app内容
+  const app = new Vue({
+    el: "#app",
+    data: {
+
+      appnum1: 15,
+      appnum2: 0
+
+    },
+    components: {
+      cpn
+    },
+    //父组件中监听子组件推送的事件,进行数值改变
+    methods: {
+      num1change(value) {
+        this.appnum1 = value;
+      },
+      num2change(value) {
+        this.appnum2 = value;
+      }
+    }
+
+  })
+</script>
+
+</body>
+</html>

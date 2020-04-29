@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+  <h2> 这是父组件</h2>
+  <cpn ref="child1"></cpn>
+  <cpn ref="child2"></cpn>
+  <cpn ref="child3"></cpn>
+
+  <button @click="children">children</button>
+  <button @click="children2">children2</button>
+
+</div>
+
+<template id="cpn">
+  <h2>这是子组件</h2>
+</template>
+<script src="../../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: "#app",
+    data: {
+      message: 'message',
+    },
+    methods: {
+      children() {
+        console.log('打印子组件信息');
+        // children是获取到一个组件数组
+        for (const appElement of this.$children) {
+          console.log(appElement.message);
+        }
+      },
+      children2() {
+        console.log('打印子组件信息');
+        // ref是通过引用指定的refid 来进行输出信息
+        console.log(this.$refs.child1.message);
+
+      }
+    },
+    // 定义子组件
+    components: {
+      'cpn': {
+        template: '#cpn',
+        data() {
+          return {
+            message: 'this is compont message'
+          }
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>
